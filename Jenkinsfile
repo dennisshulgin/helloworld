@@ -4,17 +4,19 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/dennisshulgin/helloworld.git'
+                git url: 'https://github.com/dennisshulgin/helloworld.git'
             }
         }
-        stage('Build and Test') {
+
+        stage('Build') {
             steps {
-                sh 'sh scripts/build_and_test.sh'
+                sh 'mvn clean install'
             }
         }
-        stage('Deploy') {
+
+        stage('Run Docker Compose') {
             steps {
-                sh 'sh scripts/deploy.sh'
+                sh 'docker-compose up -d'
             }
         }
     }
