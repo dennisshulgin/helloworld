@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Install Dependencies') {
-            steps {
-                sh 'sh scripts/install_dependencies.sh'
-            }
-        }
         stage('Checkout') {
             steps {
                 git 'https://github.com/dennisshulgin/helloworld.git'
